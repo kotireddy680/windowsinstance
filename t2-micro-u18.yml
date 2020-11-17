@@ -8,7 +8,7 @@
         wait: yes
         group: windowstse
         count: "{{ count }}"
-        vpc_subnet_id: vpc-087e4aa29192fac38 
+        vpc_subnet_id: subnet-0c212b425f8ada0aa 
         assign_public_ip: yes
         region: us-east-1
       register: out
@@ -18,14 +18,14 @@
     - add_host:
         hostname: "{{item.public_ip}}"
         groupname: myservers
-        ansible_user: Administrator
+        ansible_user: windows
         ansible_ssh_private_key_file: /aws/tsewin.pem
         ansible_python_interpreter: /usr/bin/python3
       with_items: "{{out.instances}}"
 
     - wait_for:
         host: "{{ item.public_ip }}"
-        port: 22
+        port: 3389
         delay: 30 
         timeout: 320
         state: started
