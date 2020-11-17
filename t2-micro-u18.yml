@@ -2,13 +2,13 @@
   hosts: localhost
   tasks:
     - ec2:
-        key_name: devops
-        instance_type: t2.micro
+        key_name: tsewin
+        instance_type: t2.small
         image: ami-00fddaa978c889423
         wait: yes
-        group: mysecgroup
+        group: windowstse
         count: "{{ count }}"
-        vpc_subnet_id: subnet-0341c67d23740d8b3 
+        vpc_subnet_id: vpc-087e4aa29192fac38 
         assign_public_ip: yes
         region: us-east-1
       register: out
@@ -19,7 +19,7 @@
         hostname: "{{item.public_ip}}"
         groupname: myservers
         ansible_user: Administrator
-        ansible_ssh_private_key_file: /aws/devops.pem
+        ansible_ssh_private_key_file: /aws/tsewin.pem
         ansible_python_interpreter: /usr/bin/python3
       with_items: "{{out.instances}}"
 
