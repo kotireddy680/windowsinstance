@@ -48,7 +48,7 @@
           - git
 #          - python
     - name: clone git repo
-      shell: git clone https://github.com/kotireddy680/tse.git
+      shell: git clone https://github.com/kotireddy680/windowsinstance.git
       args:
         chdir: /tmp
     - name: create user
