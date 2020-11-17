@@ -3,8 +3,8 @@
   tasks:
     - ec2:
         key_name: tsewin
-        instance_type: t2.small
-        image: ami-00fddaa978c889423
+        instance_type:t2.small
+        image:ami-00fddaa978c889423
         wait: yes
         group: windowstse
         count: "{{ count }}"
