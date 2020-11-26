@@ -1,6 +1,6 @@
 
- useradd devops # give ur username
- passwd devops # give the password u want
+ useradd tse # give ur username
+ passwd tse # give the password u want
  vi /etc/ssh/sshd_config
  # Permitrootlogin yes         ------- update it
  # password authentication yes  ------- update it
