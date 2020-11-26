@@ -2,13 +2,13 @@
   hosts: localhost
   tasks:
     - ec2:
-        key_name: tsewin
+        key_name: ansible-key
         instance_type:t2.small
-        image:ami-00fddaa978c889423
+        image:ami-0817d428a6fb68645
         wait: yes
-        group: windowstse
+        group: ansible
         count: "{{ count }}"
-        vpc_subnet_id: subnet-0c212b425f8ada0aa 
+        vpc_subnet_id: subnet-0c1b7eb54953d5b4f
         assign_public_ip: yes
         region: us-east-1
       register: out
@@ -18,14 +18,14 @@
     - add_host:
         hostname: "{{item.public_ip}}"
         groupname: myservers
-        ansible_user: windows
-        ansible_ssh_private_key_file: /aws/tsewin.pem
+        ansible_user: ubuntu
+        ansible_ssh_private_key_file: /aws/ansible-key.pem
         ansible_python_interpreter: /usr/bin/python3
       with_items: "{{out.instances}}"
 
     - wait_for:
         host: "{{ item.public_ip }}"
-        port: 3389
+        port: 22
         delay: 30 
         timeout: 320
         state: started
