@@ -4,11 +4,11 @@
     - ec2:
         key_name: ansible-key
         instance_type:t2.small
-        image:ami-0817d428a6fb68645
+        image:ami-0f40cd8c027cef9cb
         wait: yes
         group: ansible
         count: "{{ count }}"
-        vpc_subnet_id: subnet-0c1b7eb54953d5b4f
+        vpc_subnet_id: subnet-0c212b425f8ada0aa
         assign_public_ip: yes
         region: us-east-1
       register: out
@@ -25,7 +25,7 @@
 
     - wait_for:
         host: "{{ item.public_ip }}"
-        port: 22
+        port: 3389
         delay: 30 
         timeout: 320
         state: started
@@ -52,7 +52,7 @@
       args:
         chdir: /tmp
     - name: create user
-      shell: chmod -R 755 /tmp/it/* ; /tmp/it/user-setup.sh
+      shell: chmod -R 755 /tmp/tse/* ; /tmp/it/userdata.txt
       register: outt
     - debug:
         var: outt
