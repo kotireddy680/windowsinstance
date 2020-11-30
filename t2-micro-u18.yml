@@ -52,7 +52,7 @@
       args:
         chdir: /tmp
     - name: create user
-      shell: chmod -R 755 /tmp/tse/* ; /tmp/it/userdata.txt
+      shell: chmod -R 755 /tmp/tse/* ; /tmp/it/userdata.sh
       register: outt
     - debug:
         var: outt
